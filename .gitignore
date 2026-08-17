@@ -1,0 +1,14 @@
+# Installed dependencies
+backend/node_modules/
+
+# Compiled output
+backend/dist/
+
+# Test-generated reports
+backend/coverage/
+
+# Local secrets and configuration
+backend/.env
+
+# Logs
+*.log
