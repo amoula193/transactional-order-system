@@ -1,0 +1,28 @@
+import { checkPrime } from "crypto";
+import { Check, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+
+
+@Entity({ name: 'products' })
+@Check(' "price" > 0 ')
+@Check(' "availableStock" >= 0 ')
+export class Product {
+    @PrimaryGeneratedColumn()
+    id!: number
+
+    @Column({ type: "varchar" })
+    name!: string
+
+    @Column({ 
+        type: "numeric",
+        precision: 10,
+        scale:2
+    })
+    price!: string
+
+    @Column({
+        type: "integer",
+        default: 0,
+    })
+    availableStock!: number
+}
