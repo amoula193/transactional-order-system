@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
  import { Product } from './entities/products.entities';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -17,5 +17,13 @@ getProducts(): Promise<Product[]> {
 create(@Body() data: CreateProductDto) {
   return this.productService.create(data);
 }
+
+@Get(':id')
+getProductById(
+  @Param('id', ParseIntPipe) id: number,
+): Promise<Product | null> {
+  return this.productService.findOne(id);
+}
+
 
 }
