@@ -4,7 +4,7 @@ import { Check, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'products' })
 @Check(' "price" > 0 ')
-@Check(' "availableStock" >= 0 ')
+@Check(' "available_stock" >= 0 ')
 export class Product {
     @PrimaryGeneratedColumn()
     id!: number
@@ -22,6 +22,7 @@ export class Product {
     @Column({
         type: "integer",
         default: 0,
+        name: "available_stock"
     })
     availableStock!: number
 }
