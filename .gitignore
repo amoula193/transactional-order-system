@@ -12,3 +12,5 @@ backend/.env
 
 # Logs
 *.log
+
+docs/learning-notes.private.md

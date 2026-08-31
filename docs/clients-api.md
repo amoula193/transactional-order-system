@@ -22,6 +22,7 @@
 `id`:
 - Generated automatically
 - Not included in CreateClientDto
+
 `name`:
 - Required
 - Non-empty string
