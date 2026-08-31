@@ -2,11 +2,20 @@
 
 ## Product Model
 
+| Property | API type | Description |
+|---|---|---|
+| `id`                | number   | Generated automatically by PostgreSQL |
+| `name`              | string   | Product name |
+| `price`             | number   | Positive price with at most two decimal places |
+| `availableStock`    | number   | Current available quantity |
+ 
+
 ## Endpoints
 
-| Method | Path           | Purpose                    | Success  | Errors 
-| GET    | `/products`    | List all products          | `200`    | — |
-| POST   | `/products`    | Create a product           | `201`    | `400` |
+| Method | Path           | Purpose                    | Success  | Errors |
+|---|---|---|---|---|
+| GET    | `/products`    | List all products          | `200`    | —            |
+| POST   | `/products`    | Create a product           | `201`    | `400`        |
 | GET    | `/products/:id`| Retrieve one product       | `200`    | `400`, `404` |
 | PATCH  | `/products/:id`| Partially update a product | `200`    | `400`, `404` |
 | DELETE | `/products/:id`| Delete a product           | `204`    | `400`, `404` |
@@ -17,26 +26,37 @@
 
 ## Create Product Validation
 
-id type number, is Not emty, and is a string
-price type string, is positive and is a number with max two digits after coma
-availableStock type number, while in postgres table naming is:"available_stock",
- it is an integer and accept a minimum number 1
+id:
+- Generated automatically
+- Not included in CreateProductDto
+name:
+- Required
+- Non-empty string
 
-postgres use snake_case naming, while ts use camelCase
+price:
+- Required
+- API type: string
+- Must be positive
+- Maximum two decimal places
 
-all fields are required in Adding a new product (Post/ product)
+availableStock:
+- Required
+- Integer
+- Minimum 1 during product creation
+- Appears as available_stock only inside PostgreSQL
 
 
 
 
 ## Update Product Validation
 
-fields are optional
-when we want to update an existing products, we can pass validation on any field 
+Every field is optional, but each provided field must satisfy its original validation rules. One or multiple fields may be updated in the same request.
 
 
 ## Database Rules
-check those constraints 
-"price" > 0 
-"available_stock" >= 0 
+
+PostgreSQL independently enforces these constraints:
+
+- `price > 0`
+- `available_stock >= 0`
 
